@@ -1,4 +1,6 @@
-:root {
+:root,
+input[type="text"],
+select {
   font-family: "League Spartan";
   font-size: 16px;
   font-weight: 700;
@@ -14,4 +16,8 @@
 
 body {
   min-height: 100vh;
+}
+
+.seccion {
+  padding: 1rem 0;
 }

@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League Spartan:wght@700&display=swap">
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./main.js" defer></script>
+  <link rel="stylesheet" href="./src/styles.css">
+  <script src="./src/main.js" defer></script>
   <title>Calculadora</title>
 </head>
 <body>
   <main>
-    <h1>Calculadora</h1>
+    <h1>CALCULADORA</h1>
     <section class="seccion">
       <label
         for="num1">
@@ -22,8 +22,8 @@
         id="num1"
         autocomplete="off"
         spellcheck="false"
-        min="1"
-        max="9"
+        size="9"
+        maxlength="9"
       >
     </section>
     <section class="seccion">
@@ -50,23 +50,32 @@
         id="num2"
         autocomplete="off"
         spellcheck="false"
-        min="1"
-        max="9"
+        size="9"
+        maxlength="9"
       >
     </section>
     <button
       type="button"
       id="calcular"
+      class="btn"
     >
     Calcular
+    </button>
+    <button
+      type="button"
+      id="borrar"
+      class="btn">
+      Borrar
     </button>
     <section class="seccion">
       <label
         for="resultado">
-        Resultado
+        Resultado:
       </label>
       <input
+        type="text"
         id="resultado"
+        size="9"
         disabled>
       </input>
     </section>
