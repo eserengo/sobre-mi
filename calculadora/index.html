@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League Spartan:wght@700&display=swap">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./main.js" defer></script>
+  <title>Calculadora</title>
+</head>
+<body>
+  <main>
+    <h1>Calculadora</h1>
+    <section class="seccion">
+      <label
+        for="num1">
+        Ingrese un numero
+      </label>
+      <input
+        type="text"
+        id="num1"
+        autocomplete="off"
+        spellcheck="false"
+        min="1"
+        max="9"
+      >
+    </section>
+    <section class="seccion">
+      <label
+        for="operacion">
+        Seleccione una operacion
+      </label>
+      <select
+        id="operacion"
+      >
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+    </section>
+    <section class="seccion">
+      <label
+        for="num2">
+        Ingrese un numero
+      </label>
+      <input
+        type="text"
+        id="num2"
+        autocomplete="off"
+        spellcheck="false"
+        min="1"
+        max="9"
+      >
+    </section>
+    <button
+      type="button"
+      id="calcular"
+    >
+    Calcular
+    </button>
+    <section class="seccion">
+      <label
+        for="resultado">
+        Resultado
+      </label>
+      <input
+        id="resultado"
+        disabled>
+      </input>
+    </section>
+  </main>
+</body>
+</html>
