@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League Spartan:wght@700&display=swap">
   <link rel="stylesheet" href="./src/styles.css">
@@ -10,75 +11,100 @@
   <title>Calculadora</title>
 </head>
 <body>
-  <main>
+
+  <!-- titulo -->
+  <header>
     <h1>CALCULADORA</h1>
-    <section class="seccion">
+  </header>
+  
+  <main>
+
+    <!-- el primer input de tipo texto para que el usuario ingrese un valor con su correspondiente label -->
+    <section>
       <label
-        for="num1">
+        for="primerOperando">
         Ingrese un numero
       </label>
       <input
         type="text"
-        id="num1"
+        id="primerOperando"
         autocomplete="off"
         spellcheck="false"
         size="9"
         maxlength="9"
       >
     </section>
-    <section class="seccion">
+
+    <!-- un elemento tipo select para seleccionar un operador tambien con un label asociado -->
+    <section>
       <label
-        for="operacion">
-        Seleccione una operacion
+        for="operador">
+        Seleccione un operador
       </label>
       <select
-        id="operacion"
+        id="operador"
       >
         <option value="+">+</option>
         <option value="-">-</option>
-        <option value="*">*</option>
-        <option value="/">/</option>
+        <option value="*">x</option>
+        <option value="/">&div;</option>
       </select>
     </section>
-    <section class="seccion">
+
+    <!-- el segundo input de tipo texto para que el usuario ingrese otro valor con su correspondiente label -->
+    <section>
       <label
-        for="num2">
+        for="segundoOperando">
         Ingrese un numero
       </label>
       <input
         type="text"
-        id="num2"
+        id="segundoOperando"
         autocomplete="off"
         spellcheck="false"
         size="9"
         maxlength="9"
       >
     </section>
-    <button
-      type="button"
-      id="calcular"
-      class="btn"
-    >
-    Calcular
-    </button>
-    <button
-      type="button"
-      id="borrar"
-      class="btn">
-      Borrar
-    </button>
-    <section class="seccion">
+
+    <!-- botones para calcular o borrar los datos ingresados -->
+    <section>
+      <button
+        type="button"
+        id="calcular"
+        class="boton primario"
+      >
+      calcular
+      </button>
+      <button
+        type="button"
+        id="borrar"
+        class="boton secundario">
+        borrar
+      </button>
+    </section>
+
+    <!-- se muestra el resultado con un input tipo texto tambien pero esta desabilitado -->
+    <section>
       <label
         for="resultado">
-        Resultado:
+        El resultado es:
       </label>
       <input
         type="text"
         id="resultado"
-        size="9"
+        size="12"
         disabled>
       </input>
     </section>
   </main>
+
+  <!-- info al pie de pagina -->
+  <footer>
+    Trabajo práctico creado por &nbsp;
+    <a href="https://www.famaf.unc.edu.ar/" target="_blank" rel="noreferrer">FAMAF - UNC</a>
+    &nbsp; y realizado por &nbsp;
+    <a href="https://github.com/eserengo/" target="_blank" rel="noreferrer">Federico Borzani</a>.
+  </footer>
 </body>
 </html>
