@@ -21,29 +21,21 @@
 
     <!-- el primer input de tipo texto para que el usuario ingrese un valor con su correspondiente label -->
     <section>
-      <label
-        for="primerOperando">
-        Ingrese un numero
-      </label>
+      <label for="primerOperando">Ingrese un numero</label>
       <input
         type="text"
         id="primerOperando"
         autocomplete="off"
         spellcheck="false"
-        size="9"
-        maxlength="9"
+        size="12"
+        maxlength="12"
       >
     </section>
 
     <!-- un elemento tipo select para seleccionar un operador tambien con un label asociado -->
     <section>
-      <label
-        for="operador">
-        Seleccione un operador
-      </label>
-      <select
-        id="operador"
-      >
+      <label for="operador">Seleccione un operador</label>
+      <select id="operador">
         <option value="+">+</option>
         <option value="-">-</option>
         <option value="*">x</option>
@@ -53,47 +45,32 @@
 
     <!-- el segundo input de tipo texto para que el usuario ingrese otro valor con su correspondiente label -->
     <section>
-      <label
-        for="segundoOperando">
-        Ingrese un numero
-      </label>
+      <label for="segundoOperando">Ingrese un numero</label>
       <input
         type="text"
         id="segundoOperando"
         autocomplete="off"
         spellcheck="false"
-        size="9"
-        maxlength="9"
+        size="12"
+        maxlength="12"
       >
     </section>
 
-    <!-- botones para calcular o borrar los datos ingresados -->
+    <!-- botones para calcular, borrar y memorizar los datos ingresados -->
     <section>
-      <button
-        type="button"
-        id="calcular"
-        class="boton primario"
-      >
-      calcular
-      </button>
-      <button
-        type="button"
-        id="borrar"
-        class="boton secundario">
-        borrar
-      </button>
+      <button type="button" id="calcular" class="boton primario">calcular</button>
+      <button type="button" id="borrar" class="boton secundario">borrar</button>
+      <button type="button" id="memo" class="boton secundario">memo</button>
     </section>
 
     <!-- se muestra el resultado con un input tipo texto tambien pero esta desabilitado -->
     <section>
-      <label
-        for="resultado">
-        El resultado es:
-      </label>
+      <label for="resultado">El resultado es:</label>
       <input
         type="text"
         id="resultado"
         size="12"
+        maxlength="12"
         disabled>
       </input>
     </section>

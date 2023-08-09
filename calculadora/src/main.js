@@ -1,13 +1,15 @@
-// se crean variables para tomar los elementos input, select, botones y resultado de la pagina 
+// creamos variables para tomar los elementos input, select, botones y resultado de la pagina 
 const primerOperando = document.getElementById('primerOperando');
 const segundoOperando = document.getElementById('segundoOperando');
 const operador = document.getElementById('operador');
 const botonCalcular = document.getElementById('calcular');
 const botonBorrar = document.getElementById('borrar');
+const botonMemo = document.getElementById('memo');
 const resultado = document.getElementById('resultado');
 
 // primero vamos a declarar una funcion que devuelve la solucion dependiendo del operador seleccionado
 function solucion(primerValor, operador, segundoValor) {
+
   // creamos una variable para guardar el resultado
   let res;
 
@@ -40,19 +42,19 @@ function validacion(input, valor) {
     );
     return false;
 
-    // revisamos si el valor ingresado por el usuario es un numero, de lo contrario emitimos otro mensaje de error
+  // revisamos si el valor ingresado por el usuario es un numero, de lo contrario emitimos otro mensaje de error
   } else if (isNaN(valor)) {
     input.parentElement.insertAdjacentHTML(
       "beforeend", `<p class="error">Error! Debe ingresar un numero.</p>`
     );
     return false;
 
-    // si pasa las dos verificaciones retornamos el input del usuario parseado
-    // usamos parseFloat para que el valor ingresado pueda ser un numero decimal
+  // si pasa las dos verificaciones retornamos el input del usuario parseado
+  // usamos parseFloat para que el valor ingresado pueda ser un numero decimal
   } else {
     return parseFloat(valor);
-  };
-};
+  }
+}
 
 // creamos la logica que se ejecuta al hacer click en el boton calcular
 function calcular() {
@@ -86,23 +88,21 @@ function calcular() {
 
       // si el resultado obtenido es demasiado grande o demasiado chico para ser mostrado
       // emitimos un mensaje de error, en el caso concreto la interfaz de usuario no puede mostrar
-      // numeros positivos de mas de 12 cifras o negativos de mas de 11 cifras
-      // trabajamos con hasta dos decimales para no saturar el resultado
-      if (mostrarSolucion.toFixed(2).toString().length > 12) {
+      // numeros de mas de 12 cifras
+      if (mostrarSolucion > 999999999999 || mostrarSolucion < -999999999999) {
         resultado.parentElement.insertAdjacentHTML(
           "beforeend", `<p class="error">Error! El resultado esta fuera de rango.</p>`
         );
         resultado.value = 'E';
 
-      // si esta en rango, imprimimos el resultado
-      // si es un entero: como esta,
-      // si esta entre 1 y -1: con todos los decimales
-      // si tiene decimales: solo con hasta dos decimales
-
+        // si no, imprimimos el valor
+        // hay que recordar que NO se muestran resultados de mas de 12 cifras por lo que se vamos a recortar los decimales
+        // que superen esta marca con el metodo slice, esto solo se aplica a numeros decimales, porque si es un entero 
+        // queda comprendido en el condicional anterior
       } else {
-        (mostrarSolucion % 1 === 0) || (mostrarSolucion < 1 && mostrarSolucion > -1)
-          ? resultado.value = mostrarSolucion
-          : resultado.value = mostrarSolucion.toFixed(2);
+        mostrarSolucion < 0
+          ? resultado.value = mostrarSolucion.toString().slice(0, 13)
+          : resultado.value = mostrarSolucion.toString().slice(0, 12);
       }
     }
   }
@@ -115,12 +115,27 @@ function borrar() {
   operador.value = '+'
   resultado.value = '';
   document.querySelectorAll('.error').forEach(msg => msg.remove());
-};
+}
+
+// por ultimo vamos a agregar una nueva funcionalidad a la calculadora que es un boton de MEMO
+// lo que hace es tomar el resultado final y asignarlo al primer operando, lo que nos permite
+// anidar operaciones, practicamente es igual a la funcion borrar
+
+function memo() {
+  primerOperando.value = resultado.value;
+  segundoOperando.value = '';
+  operador.value = '+'
+  resultado.value = '';
+  document.querySelectorAll('.error').forEach(msg => msg.remove());
+}
 
 // agregamos un evento al boton de calcular con la funcion correspondiente
 botonCalcular.addEventListener('click', calcular);
 
 // agregamos un evento al boton de borrar con la funcion correspondiente
 botonBorrar.addEventListener('click', borrar);
+
+// agregamos un evento al boton memo con la funcion correspondiente
+botonMemo.addEventListener('click', memo);
 
 // fin del script
