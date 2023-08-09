@@ -26,7 +26,7 @@ function solucion(primerValor, operador, segundoValor) {
       break;
     default:
       res = primerValor / segundoValor;
-  };
+  }
 
   // devolvemos la variable
   return res;
@@ -38,14 +38,14 @@ function validacion(input, valor) {
   // revisamos si el valor ingresado por el usuario no esta vacio, de lo contrario emitimos un mensaje de error
   if (!valor) {
     input.parentElement.insertAdjacentHTML(
-      "beforeend", `<p class="error">Error! No ha ingresado un valor. </p>`
+      'beforeend', `<p class='error'>Error! No ha ingresado un valor. </p>`
     );
     return false;
 
   // revisamos si el valor ingresado por el usuario es un numero, de lo contrario emitimos otro mensaje de error
   } else if (isNaN(valor)) {
     input.parentElement.insertAdjacentHTML(
-      "beforeend", `<p class="error">Error! Debe ingresar un numero.</p>`
+      'beforeend', `<p class='error'>Error! Debe ingresar un numero.</p>`
     );
     return false;
 
@@ -77,21 +77,21 @@ function calcular() {
     // en este caso emitimos un mensaje de error
     if (operador.value == '/' && segundoOperandoValidado === 0) {
       resultado.parentElement.insertAdjacentHTML(
-        "beforeend", `<p class="error">Error! Intenta realizar una division por 0.</p>`
+        'beforeend', `<p class='error'>Error! Intenta realizar una division por 0.</p>`
       );
       resultado.value = 'E';
 
       // si han sido superados estos pasos de validacion podemos finalmente proceder a realizar el calculo
-      // llamamos a la funcion solucion con los parametros seleccionados
+      // llamamos a la funcion solucion con los parametros ingresados por el usuario
     } else {
       const mostrarSolucion = solucion(primerOperandoValidado, operador.value, segundoOperandoValidado);
 
       // si el resultado obtenido es demasiado grande o demasiado chico para ser mostrado
-      // emitimos un mensaje de error, en el caso concreto la interfaz de usuario no puede mostrar
+      // emitimos un mensaje de error, en el caso concreto la interfaz no puede mostrar
       // numeros de mas de 12 cifras
       if (mostrarSolucion > 999999999999 || mostrarSolucion < -999999999999) {
         resultado.parentElement.insertAdjacentHTML(
-          "beforeend", `<p class="error">Error! El resultado esta fuera de rango.</p>`
+          'beforeend', `<p class='error'>Error! El resultado esta fuera de rango.</p>`
         );
         resultado.value = 'E';
 
@@ -112,7 +112,7 @@ function calcular() {
 function borrar() {
   primerOperando.value = '';
   segundoOperando.value = '';
-  operador.value = '+'
+  operador.value = '+';
   resultado.value = '';
   document.querySelectorAll('.error').forEach(msg => msg.remove());
 }
@@ -120,13 +120,16 @@ function borrar() {
 // por ultimo vamos a agregar una nueva funcionalidad a la calculadora que es un boton de MEMO
 // lo que hace es tomar el resultado final y asignarlo al primer operando, lo que nos permite
 // anidar operaciones, practicamente es igual a la funcion borrar
+// solo funciona si el resultado es valido, no un error
 
 function memo() {
-  primerOperando.value = resultado.value;
-  segundoOperando.value = '';
-  operador.value = '+'
-  resultado.value = '';
-  document.querySelectorAll('.error').forEach(msg => msg.remove());
+  resultado.value !== 'E'
+    ? (primerOperando.value = resultado.value,
+      segundoOperando.value = '',
+      operador.value = '+',
+      resultado.value = '',
+      document.querySelectorAll('.error').forEach(msg => msg.remove()))
+    : null;
 }
 
 // agregamos un evento al boton de calcular con la funcion correspondiente

@@ -10,11 +10,12 @@ El usuario puede:
 - Ingresar dos numeros en los campos correspondientes, pueden ser números enteros o con decimales, asimismo pueden ser números
 positivos o negativos. Los números ingresados no pueden tener mas de 12 cifras.
 - Seleccionar el operador deseado: puede ser suma, resta, multiplicación o división.
-- Realizar el cálculo correspondiente haciendo click el el botón calcular.
+- Realizar el cálculo correspondiente haciendo click en el botón calcular.
 - Borrar los contenidos ingresados haciendo click en el botón borrar.
-- Memorizar el resultado y asignarlo al primer operando, para asi poder anidar cálculos, haciendo click en el botón memo.
+- Memorizar el resultado y asignarlo al primer operando, para así poder anidar cálculos, haciendo click en el botón memo.
 
-Si el usuario realiza las siguientes acciones, recibirá un mensaje de error y el resultado se invalidará:
+Si el usuario realiza las siguientes acciones, recibirá un mensaje de error y el resultado y la función de memorización 
+se invalidarán:
 - Ingresar otros datos que no sean números.
 - No ingresar ningún dato (dejar el campo vacío).
 - Dividir por cero (0).
