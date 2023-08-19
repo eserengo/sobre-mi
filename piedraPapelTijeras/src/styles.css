@@ -1,0 +1,137 @@
+:root {
+
+  /* Tipografia */
+  font-family: "Ultra", serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+
+  /* Paleta de colores */
+  --turquesa: #22a699;
+  --amarillo: #f2be22;
+  --rojo: #f24c3d;
+  --blanco: #fcfcfc;
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 0%;
+  margin: 0%;
+  user-select: none;
+}
+
+body {
+  background-color: var(--amarillo);
+  min-width: 145px;
+  padding: 5vh 3vw;
+}
+
+header,
+section,
+footer {
+  border: 2px solid var(--turquesa);
+  border-radius: 8px;
+  background-color: var(--blanco);
+}
+
+header, footer {
+  text-align: center;
+  padding-block: 2vh;
+}
+
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1vh;
+  padding: 6vh 2vw;
+}
+
+section > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1vw;
+}
+
+section > div > *:hover {
+  cursor: pointer;
+  transform: scale(1.15);
+}
+
+i {
+  font-size: max(8vw, 2rem) !important;
+  color: var(--rojo);
+}
+
+h1, h2, h3 {
+  color: var(--turquesa);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 0.75rem;
+}
+
+span {
+  text-transform: uppercase;
+  font-size: 6vw;
+  font-weight: 700;
+  border: 4px solid;
+  border-radius: 50%;
+  padding: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--rojo);
+  background-color: var(--amarillo);
+}
+
+img {
+  width: max(16vw, 4rem);
+  height: auto;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+
+@media only screen and (width > 376px) {
+  main {
+    flex-direction: row;
+    justify-content: center;
+  }
+  section {
+    padding: 2vh 6vw;
+  }
+  h1 {
+    font-size: 5vw;
+  }
+  h2 {
+    font-size: 4vw;
+  }
+  h3 {
+    font-size: 3vw;
+  }
+}
