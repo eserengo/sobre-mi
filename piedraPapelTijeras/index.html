@@ -17,33 +17,42 @@
   </header>
   <main>
       <section>
-        <h2 id="nombreJugador"></h2>
-        <span id="eleccionJugador"></span>
-        <h2>score: <span id="scoreJugador"></span></h2>
+        <h2 id="nombreJugadorEl"></h2>
+        <span id="manoJugadorEl"></span>
+        <h2>score: <span id="scoreJugadorEl"></span></h2>
       </section>
       <span class="vs">vs</span>
       <section>
         <h2>La Compu</h2>
-        <span id="eleccionComputadora"></span>
-        <h2>score: <span id="scoreComputadora"></span></h2>
+        <span id="manoComputadoraEl"></span>
+        <h2>score: <span id="scoreComputadoraEl"></span></h2>
       </section>
   </main>
   <footer>
-    <section id="manos">
+    <section id="manosEl">
       <h3>Elige tu mano:</h3>
     </section>
-    <h3 id="mensaje">--- mensajes ---</h3>
+    <h3 id="mensajeEl"></h3>
   </footer>
 
-  <dialog class="modal" id="intro-modal">
+  <dialog class="modal" id="introModalEl">
     <form action="#" method="dialog">
-      <label for="input">
+      <label for="inputEl">
         Bienvenido.
         <br>
         Por favor ingresa tu nombre y haz click en Jugar!</label>
-      <input type="text" id="input" size="15" placeholder="ingresa tu nombre aqui" autocomplete="off" spellcheck="false" required>
-      <input type="submit" value="Jugar!" id="jugar" formmethod="dialog">
+      <input type="text" id="inputEl" size="15" placeholder="ingresa tu nombre aqui" autocomplete="off" spellcheck="false" required>
+      <input type="submit" value="Jugar!" id="jugarBtn" formmethod="dialog">
     </form>
+  </dialog>
+
+  <dialog class="modal" id="gameOverModalEl">
+    <h3>Game Over</h3>
+    <h2>
+      <span id="ganadorEl"></span>
+    </h2>
+    <button type="button" id="revanchaBtn"></button>
+    <button type="button" id="nuevoJugadorBtn">Nuevo Jugador</button>
   </dialog>
   
 </body>
