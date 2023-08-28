@@ -236,6 +236,7 @@ button:hover {
   background-position: center;
 }
 
+/* Aca se definen las animaciones requeridas por parte 7. */
 @keyframes shake {
   0% {
     transform: scale(1.25);

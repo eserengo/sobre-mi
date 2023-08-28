@@ -1,6 +1,7 @@
 // --COMIENZO DEL SCRIPT
 
-// 
+// Para empezar establecemos las variables, los elementos para manipular el DOM y variables para guardar otros 
+// datos como el nombre del usuario, los scores, el numero de ronda, etc.
 
 const introModalEl = document.getElementById('introModalEl');
 const jugarBtn = document.getElementById('jugarBtn');
@@ -45,8 +46,8 @@ const DATA = [
   }
 ];
 
-// -------- FUNCIONES --------
-
+// La funcion para establecer el nombre del jugador, con un bloque try catch que lanza excepciones si el
+// usuario no ingresa un nombre o si el nombre ingresado es muy largo.
 function nombrarAlJugador(event) {
   const inputEl = document.getElementById('inputEl');
 
@@ -75,16 +76,20 @@ function nombrarAlJugador(event) {
   }
 }
 
+// La funcion que toma la jugada del jugador, genera un string con el event.
 function turnoJugador(event) {
   return event.target.alt;
 }
 
+// La funcion que genera la jugada de la computadora, de forma random, tambien retorna un string.
 function turnoComputadora() {
   const jugadasPosibles = DATA.map(item => item.titulo);
   const generarRandom = Math.floor(Math.random() * jugadasPosibles.length);
   return jugadasPosibles[generarRandom];
 }
 
+// Esta funcion inserta en el DOM un elemento <img> con la imagen relacionada al string. Sirve tanto para mostrar la 
+// mano del usuario como la mano de la computadora.
 function mostrarMano(entrada, elemento) {
   elemento.querySelector('img') && elemento.querySelector('img').remove();
   return DATA.map(item => {
@@ -96,6 +101,8 @@ function mostrarMano(entrada, elemento) {
   });
 }
 
+// Esta funcion calcula el ganador de cada ronda, generando un mensaje de resultado mas un mesaje random 
+// y actualiza las variables de ronda y score o no en caso de empate, segun lo solicitado en la parte 4.
 function determinarGanador(computadora, jugador) {
   const reRandom = () => {
     const mensajesPosibles = ['Esto se pone interesante...', 'Que suerte!', 'Ya se define...', 'Vamos todavia!'];
@@ -126,6 +133,8 @@ function determinarGanador(computadora, jugador) {
   }
 }
 
+// Esta funcion se ejecuta cuando uno de los jugadores llega al numero de victorias necesarias. Activa el modal 
+// de fin de juego.
 function gameOver(msgGanador, msgBoton) {
   gameOverModalEl.showModal();
   ganadorEl.textContent = msgGanador;
@@ -133,6 +142,7 @@ function gameOver(msgGanador, msgBoton) {
   return;
 }
 
+// Esta funcion reinicia el juego con el mismo nombre de usuario.
 function revancha() {
   scoreJugador = 0;
   scoreComputadora = 0;
@@ -149,7 +159,12 @@ function revancha() {
   return;
 }
 
+// Esta es la funcion principal del script, se encarga de llamar a las otras funciones establecidas anteriormente
+// y gestionar los eventos correspondientes.
 function elJuego() {
+
+  // Se generan dinamicamente tres imagenes usando el array DATA para que le usuario seleccione su opcion
+  // segun lo requerido por el apartado 3.1
   document.querySelectorAll('.mano').forEach(item => item.remove());
   DATA.map(item => {
     document.getElementById('manosEl').insertAdjacentHTML(
@@ -165,6 +180,9 @@ function elJuego() {
     mensajeEl.textContent = 'Elige tu mano haciendo click en uno de los iconos de manos.';
     }, 20000);
 
+  // Aca la aplicacion aguarda a que el usuario seleccione su mano, se puede decir que queda inactiva esperando
+  // la seleccion y una vez que succede llama las funciones para mostrar las manos y determinar el ganador de 
+  // la ronda o el ganador del juego.
   document.querySelectorAll('.mano').forEach(item => {
     item.addEventListener('click', (event) => {
       
@@ -181,24 +199,30 @@ function elJuego() {
 
       determinarGanador(jugadaDeComputadora, jugadaDeJugador);
 
+      // El juego termina cuando el usuario o la computadora alcanzan 3 victorias, segun la parte 5.
       scoreJugador == 3 && gameOver(`Felicitaciones, ${nombreJugador} ganó!`, 'Dar revancha');
       scoreComputadora == 3 && gameOver('Que pena, La Compu es la ganadora.', 'Quiero revancha!');
     });
   })
 
+  // El modal de bienvenida se activa cuando el DOM se ha cargado.
   window.addEventListener('DOMContentLoaded', () => {
     introModalEl.showModal();
   })
   jugarBtn.addEventListener('click', nombrarAlJugador);
+
+  // Los modales no se pueden cerrar presionando la tecla ESC
   introModalEl.addEventListener('cancel', (event) => {
+    event.preventDefault();
+  });
+  gameOverModalEl.addEventListener('cancel', (event) => {
     event.preventDefault();
   });
 
   revanchaBtn.addEventListener('click', revancha);
+
+  // EL boton nuevo jugador del final del juego simplemente refresca la pagina relanzando la aplicacion.
   nuevoJugadorBtn.addEventListener('click', () => window.location.reload());
-  gameOverModalEl.addEventListener('cancel', (event) => {
-    event.preventDefault();
-  });
 };
 
 elJuego();
