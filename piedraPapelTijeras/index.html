@@ -17,7 +17,7 @@
   </header>
   <main>
 
-    <!-- En esta caja estan incluidos los datos del jugador usuario: nombre, la mano que juega y su score. -->
+      <!-- En esta caja estan incluidos los datos del jugador usuario: nombre, la mano que juega y su score. -->
       <section>
         <h2 id="nombreJugadorEl"></h2>
         <span id="manoJugadorEl"></span>
@@ -35,12 +35,13 @@
   </main>
 
   <footer>
+    
     <!-- En esta caja se muestran las tres opciones de juego para que el usuario elija: piedra, papel o tijeras. -->
     <section id="manosEl">
       <h3>Elige tu mano:</h3>
     </section>
 
-    <!-- Aca se muestran mensajes con el numero de ronda y quien es el ganador de cada ronda. -->
+    <!-- Aca se muestran mensajes como el numero de ronda y quien es el ganador de cada una. -->
     <h3 id="mensajeEl"></h3>
   </footer>
 
@@ -56,7 +57,7 @@
     </form>
   </dialog>
 
-  <!-- Este elemento muestra quien es el ganador del juego y da opciones al usuario para reiniciar el juego. -->
+  <!-- Este elemento tambien tipo modal, muestra quien es el ganador del juego y da opciones al usuario para reiniciarlo. -->
   <dialog class="modal" id="gameOverModalEl">
     <h3>Game Over</h3>
     <h2>
@@ -65,9 +66,8 @@
     <button type="button" id="revanchaBtn"></button>
     <button type="button" id="nuevoJugadorBtn">Nuevo Jugador</button>
   </dialog>
-
   <!-- Los elementos <dialog> no se muestran por defecto sino que hay que activarlos en el momento deseado mediante
-  Javascript, esta funcionalidad me parecio genial porque nunca los habia utilizado. -->
+  Javascript, nunca antes los habia utilizado y esta funcionalidad me parecio genial. -->
   
 </body>
 </html>

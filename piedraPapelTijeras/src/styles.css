@@ -23,7 +23,7 @@
 
 body {
   background-color: var(--amarillo);
-  min-width: 150px;
+  min-width: 225px;
   padding: 3vh 3vw;
 }
 
@@ -78,6 +78,10 @@ h1 {
 
 h2 {
   font-size: 1rem;
+}
+
+.modal h2 {
+  color: var(--rojo);
 }
 
 h3 {
@@ -171,7 +175,8 @@ form {
   align-items: center;
 }
 
-label, input[type="text"] {
+label,
+input[type="text"] {
   padding: 0.5rem 1rem;
   font-size: 1.5rem;
 }
@@ -190,7 +195,6 @@ input[type="submit"],
 button {
   font-family: "Ultra";
   font-size: min(4vw, 2rem);
-  color: var(--blanco);
   color: var(--turquesa);
   background-color: var(--blanco);
   border: 1px solid var(--turquesa);
@@ -236,7 +240,7 @@ button:hover {
   background-position: center;
 }
 
-/* Aca se definen las animaciones requeridas por parte 7. */
+/* Aca se definen las animaciones requeridas por la parte 7. */
 @keyframes shake {
   0% {
     transform: scale(1.25);

@@ -76,20 +76,20 @@ function nombrarAlJugador(event) {
   }
 }
 
-// La funcion que toma la jugada del jugador, genera un string con el event.
+// La funcion que toma la jugada del jugador, genera un string usando el evento.
 function turnoJugador(event) {
   return event.target.alt;
 }
 
-// La funcion que genera la jugada de la computadora, de forma random, tambien retorna un string.
+// La funcion que genera la jugada de la computadora, de forma aleatoria, tambien retorna un string.
 function turnoComputadora() {
   const jugadasPosibles = DATA.map(item => item.titulo);
   const generarRandom = Math.floor(Math.random() * jugadasPosibles.length);
   return jugadasPosibles[generarRandom];
 }
 
-// Esta funcion inserta en el DOM un elemento <img> con la imagen relacionada al string. Sirve tanto para mostrar la 
-// mano del usuario como la mano de la computadora.
+// Esta funcion inserta en el DOM un elemento <img> con la imagen relacionada al string entrada, que es la jugada 
+// establecida en las dos funciones anteriores, sirve tanto para la mano del usuario como para la mano de la computadora.
 function mostrarMano(entrada, elemento) {
   elemento.querySelector('img') && elemento.querySelector('img').remove();
   return DATA.map(item => {
@@ -101,8 +101,8 @@ function mostrarMano(entrada, elemento) {
   });
 }
 
-// Esta funcion calcula el ganador de cada ronda, generando un mensaje de resultado mas un mesaje random 
-// y actualiza las variables de ronda y score o no en caso de empate, segun lo solicitado en la parte 4.
+// Esta funcion calcula el ganador de cada ronda, generando un mensaje de resultado mas un mensaje random 
+// y actualiza las variables de ronda y score o no en caso de empate, segun lo requerido en la parte 4.
 function determinarGanador(computadora, jugador) {
   const reRandom = () => {
     const mensajesPosibles = ['Esto se pone interesante...', 'Que suerte!', 'Ya se define...', 'Vamos todavia!'];
@@ -110,7 +110,7 @@ function determinarGanador(computadora, jugador) {
   }
 
   if (computadora === jugador) {
-    mensajeEl.textContent = `Ronda ${numeroDeRonda}: empate. ` + reRandom();
+    mensajeEl.textContent = `Ronda ${numeroDeRonda}: empate. Todo sigue igual.`;
     return;
 
   } else if (
@@ -142,7 +142,7 @@ function gameOver(msgGanador, msgBoton) {
   return;
 }
 
-// Esta funcion reinicia el juego con el mismo nombre de usuario.
+// Esta funcion reinicia el juego con el mismo nombre de usuario, segun lo requerido por la parte 6.
 function revancha() {
   scoreJugador = 0;
   scoreComputadora = 0;
@@ -164,7 +164,7 @@ function revancha() {
 function elJuego() {
 
   // Se generan dinamicamente tres imagenes usando el array DATA para que le usuario seleccione su opcion
-  // segun lo requerido por el apartado 3.1
+  // segun lo requerido por la parte 3.1
   document.querySelectorAll('.mano').forEach(item => item.remove());
   DATA.map(item => {
     document.getElementById('manosEl').insertAdjacentHTML(
@@ -178,10 +178,10 @@ function elJuego() {
   scoreComputadoraEl.textContent = scoreComputadora;
   timer = window.setTimeout(() => {
     mensajeEl.textContent = 'Elige tu mano haciendo click en uno de los iconos de manos.';
-    }, 20000);
+    }, 15000);
 
   // Aca la aplicacion aguarda a que el usuario seleccione su mano, se puede decir que queda inactiva esperando
-  // la seleccion y una vez que succede llama las funciones para mostrar las manos y determinar el ganador de 
+  // la seleccion y una vez que esto sucede, llama las funciones para mostrar las manos y determinar el ganador de 
   // la ronda o el ganador del juego.
   document.querySelectorAll('.mano').forEach(item => {
     item.addEventListener('click', (event) => {
@@ -189,7 +189,7 @@ function elJuego() {
       window.clearTimeout(timer);
       timer = window.setTimeout(() => {
         mensajeEl.textContent = 'Elige tu mano haciendo click en uno de los iconos de manos.';
-      }, 10000);
+      }, 15000);
 
       jugadaDeJugador = turnoJugador(event);
       jugadaDeComputadora = turnoComputadora();
@@ -200,15 +200,16 @@ function elJuego() {
       determinarGanador(jugadaDeComputadora, jugadaDeJugador);
 
       // El juego termina cuando el usuario o la computadora alcanzan 3 victorias, segun la parte 5.
-      scoreJugador == 3 && gameOver(`Felicitaciones, ${nombreJugador} ganó!`, 'Dar revancha');
+      scoreJugador == 3 && gameOver(`Felicitaciones, ${nombreJugador} ganó!`, 'Ofrecer revancha');
       scoreComputadora == 3 && gameOver('Que pena, La Compu es la ganadora.', 'Quiero revancha!');
     });
   })
 
-  // El modal de bienvenida se activa cuando el DOM se ha cargado.
+  // El modal de bienvenida se activa una vez que el DOM se ha cargado.
   window.addEventListener('DOMContentLoaded', () => {
     introModalEl.showModal();
   })
+  
   jugarBtn.addEventListener('click', nombrarAlJugador);
 
   // Los modales no se pueden cerrar presionando la tecla ESC
@@ -221,7 +222,7 @@ function elJuego() {
 
   revanchaBtn.addEventListener('click', revancha);
 
-  // EL boton nuevo jugador del final del juego simplemente refresca la pagina relanzando la aplicacion.
+  // El boton nuevo jugador del final del juego simplemente relanza la aplicacion.
   nuevoJugadorBtn.addEventListener('click', () => window.location.reload());
 };
 
